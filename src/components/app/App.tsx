@@ -12,22 +12,22 @@ import {
 } from '../../constants/articleProps';
 
 export const App = () => {
-	const [sideBarState, setSideBarState] =
+	const [formState, setFormState] =
 		useState<ArticleStateType>(defaultArticleState);
-	const [state, setState] = useState(defaultArticleState);
+	const [articleState, setArticleState] = useState(defaultArticleState);
 
 	const changeState = (key: keyof ArticleStateType, select: OptionType) => {
-		setSideBarState((prevState) => ({ ...prevState, [key]: select }));
+		setFormState((prevState) => ({ ...prevState, [key]: select }));
 	};
 
-	const resetSidebarState = () => {
-		setState(defaultArticleState);
-		setSideBarState(defaultArticleState);
+	const resetFormState = () => {
+		setArticleState(defaultArticleState);
+		setFormState(defaultArticleState);
 	};
 
-	const applySideBarState = (event: FormEvent) => {
+	const applyFormState = (event: FormEvent) => {
 		event.preventDefault();
-		setState(sideBarState);
+		setArticleState(formState);
 	};
 
 	return (
@@ -35,11 +35,11 @@ export const App = () => {
 			className={styles.main}
 			style={
 				{
-					'--font-family': state.fontFamilyOption.value,
-					'--font-size': state.fontSizeOption.value,
-					'--font-color': state.fontColor.value,
-					'--container-width': state.contentWidth.value,
-					'--bg-color': state.backgroundColor.value,
+					'--font-family': articleState.fontFamilyOption.value,
+					'--font-size': articleState.fontSizeOption.value,
+					'--font-color': articleState.fontColor.value,
+					'--container-width': articleState.contentWidth.value,
+					'--bg-color': articleState.backgroundColor.value,
 				} as CSSProperties
 			}>
 			<ArticleParamsForm
@@ -48,9 +48,9 @@ export const App = () => {
 				fontColor={(select) => changeState('fontColor', select)}
 				backgroundColor={(select) => changeState('backgroundColor', select)}
 				contentWidth={(select) => changeState('contentWidth', select)}
-				resetButton={resetSidebarState}
-				applyButton={applySideBarState}
-				sideBarState={sideBarState}
+				resetButton={resetFormState}
+				applyButton={applyFormState}
+				sideBarState={formState}
 			/>
 			<Article />
 		</main>

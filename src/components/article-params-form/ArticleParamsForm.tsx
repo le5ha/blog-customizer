@@ -71,7 +71,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 		<>
 			<ArrowButton onClick={toggleForm} isOpen={open} />
 			<aside
-				className={clsx(styles.container, { [styles.container_open]: open })}>
+				className={`${styles.container} ${open ? styles.container_open : ''}`}>
 				<form className={styles.form} ref={ref} onSubmit={props.applyButton}>
 					<Text size={31} weight={800} uppercase as={'h3'} align='center'>
 						Задайте параметры
